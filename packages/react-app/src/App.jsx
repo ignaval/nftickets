@@ -53,7 +53,7 @@ const { ethers } = require("ethers");
 */
 
 /// 📡 What chain are your contracts deployed to?
-const initialNetwork = NETWORKS.localhost; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const initialNetwork = NETWORKS.skaleMuscida; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
 const DEBUG = true;
@@ -375,6 +375,16 @@ function App(props) {
             contractConfig={contractConfig}
             chainId={1}
           />
+          {/* <Contract
+            name="EventPassToken"
+            customContract={mainnetContracts && mainnetContracts.contracts && mainnetContracts.contracts.EventPassToken}
+            signer={userSigner}
+            provider={mainnetProvider}
+            address={address}
+            blockExplorer="https://attractive-muscida.explorer.portland.skalenodes.com/"
+            contractConfig={contractConfig}
+            chainId={0xafcee83030b95}
+          /> */}
           {/*
             <Contract
               name="UNI"

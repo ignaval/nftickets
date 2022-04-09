@@ -17,6 +17,13 @@ export const NETWORKS = {
     blockExplorer: "",
     rpcUrl: "http://" + (global.window ? window.location.hostname : "localhost") + ":8545",
   },
+  skaleMuscida: {
+    name: "skaleMuscida",
+    color: "#666666",
+    chainId: 0xafcee83030b95,
+    blockExplorer: "https://attractive-muscida.explorer.portland.skalenodes.com/",
+    rpcUrl: "https://portland.skalenodes.com/v1/attractive-muscida",
+  },
   mainnet: {
     name: "mainnet",
     color: "#ff8b9e",
