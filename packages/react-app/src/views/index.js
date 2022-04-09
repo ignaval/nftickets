@@ -4,3 +4,4 @@ export { default as Hints } from "./Hints";
 export { default as Subgraph } from "./Subgraph";
 export { default as NFTickets } from "./NFTickets";
 export { default as NFTicketsEvent } from "./NFTicketsEvent";
+export { default as NFTicketsClaim } from "./NFTicketsClaim";

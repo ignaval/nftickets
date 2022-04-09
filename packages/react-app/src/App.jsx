@@ -29,7 +29,7 @@ import externalContracts from "./contracts/external_contracts";
 // contracts
 import deployedContracts from "./contracts/hardhat_contracts.json";
 import { Transactor, Web3ModalSetup } from "./helpers";
-import { Home, ExampleUI, Hints, Subgraph, NFTickets, NFTicketsEvent } from "./views";
+import { Home, ExampleUI, Hints, Subgraph, NFTickets, NFTicketsEvent, NFTicketsClaim } from "./views";
 import { useStaticJsonRPC } from "./hooks";
 
 const { ethers } = require("ethers");
@@ -258,9 +258,9 @@ function App(props) {
       />
       <Menu style={{ textAlign: "center", marginTop: 40 }} selectedKeys={[location.pathname]} mode="horizontal">
         <Menu.Item key="/">
-          <Link to="/">App Home</Link>
+          <Link to="/">NFTicketer</Link>
         </Menu.Item>
-        <Menu.Item key="/debug">
+        {/* <Menu.Item key="/debug">
           <Link to="/debug">Debug Contracts</Link>
         </Menu.Item>
         <Menu.Item key="/hints">
@@ -274,19 +274,29 @@ function App(props) {
         </Menu.Item>
         <Menu.Item key="/subgraph">
           <Link to="/subgraph">Subgraph</Link>
+        </Menu.Item> */}
+        <Menu.Item key="/create">
+          <Link to="/create">Create</Link>
         </Menu.Item>
-        <Menu.Item key="/nftickets">
-          <Link to="/nftickets">NFTickets</Link>
+        <Menu.Item key="/buy">
+          <Link to="/buy">Buy</Link>
         </Menu.Item>
-        <Menu.Item key="/nfticketsevent">
-          <Link to="/nfticketsevent">NFTicketsEvent</Link>
+        <Menu.Item key="/claim">
+          <Link to="/claim">Claim</Link>
         </Menu.Item>
       </Menu>
 
       <Switch>
         <Route exact path="/">
-          {/* pass in any web3 props to this Home component. For example, yourLocalBalance */}
-          <Home yourLocalBalance={yourLocalBalance} readContracts={readContracts} />
+          {/* <Home yourLocalBalance={yourLocalBalance} readContracts={readContracts} /> */}
+          <h1>NFTicketer</h1>
+          <h3>Create an event, buy tickets for an existing event, or claim your even's proceeds</h3>
+          <a
+            href="https://attractive-muscida.explorer.portland.skalenodes.com/address/0xf17D0Cb9d9d7219a5F6469b47BE41F34449E711e"
+            target="_blank" rel="noreferrer"
+          >
+            Contract on SKALE explorer
+          </a>
         </Route>
         <Route exact path="/debug">
           {/*
@@ -336,7 +346,7 @@ function App(props) {
             purpose={purpose}
           />
         </Route>
-        <Route path="/nftickets">
+        <Route path="/create">
           <NFTickets
             address={address}
             userSigner={userSigner}
@@ -350,8 +360,22 @@ function App(props) {
             purpose={purpose}
           />
         </Route>
-        <Route path="/nfticketsevent">
+        <Route path="/buy">
           <NFTicketsEvent
+            address={address}
+            userSigner={userSigner}
+            mainnetProvider={mainnetProvider}
+            localProvider={localProvider}
+            yourLocalBalance={yourLocalBalance}
+            price={price}
+            tx={tx}
+            writeContracts={writeContracts}
+            readContracts={readContracts}
+            purpose={purpose}
+          />
+        </Route>
+        <Route path="/claim">
+          <NFTicketsClaim
             address={address}
             userSigner={userSigner}
             mainnetProvider={mainnetProvider}

@@ -14,7 +14,7 @@ import {
   useUserProviderAndSigner,
 } from "eth-hooks";
 
-export default function NFTicketsEvent({
+export default function NFTicketsClaim({
   purpose,
   address,
   mainnetProvider,
@@ -58,7 +58,7 @@ export default function NFTicketsEvent({
         ⚙️ Here is an example UI that displays and sets the purpose in your smart contract:
       */}
       <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
-        <h2>NFTicketer Event:</h2>
+        <h2>NFTicketer Claim:</h2>
         <Divider />
         <div style={{ margin: 8 }}>
           <a
@@ -71,7 +71,7 @@ export default function NFTicketsEvent({
         </div>
         <Divider />
         <div style={{ margin: 8 }}>
-          <h2>Buy tickets</h2>
+          <h2>Claim proceeds</h2>
           <h3>Event Id</h3>
           <Input
             placeholder="0"
@@ -82,23 +82,13 @@ export default function NFTicketsEvent({
           <h3>Number of tickets</h3>
           <p>Ticket price (wei): {ticketPrice}</p>
           <p>Tickets available: {ticketsAvailable}</p>
-          <p>My tickets for this event: {myTickets}</p>
-          <Input
-            onChange={e => {
-              setTicketCount(e.target.value);
-            }}
-          />
           <Button
             onClick={() => {
               console.log(ticketCount * ticketPrice);
-              tx(
-                writeContracts.EventPassToken.buyPass(eventId, ticketCount, {
-                  value: ticketCount * ticketPrice,
-                }),
-              );
+              tx(writeContracts.EventPassToken.withdrawEarnings(eventId));
             }}
           >
-            Buy {ticketCount} tickets
+            Claim proceeds
           </Button>
         </div>
         <Divider />
