@@ -25,11 +25,21 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
     waitConfirmations: 5,
   });
 
+  await deploy("YourContract", {
+    // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
+    from: deployer,
+    // args: [ "Hello", ethers.utils.parseEther("1.5") ],
+    log: true,
+    waitConfirmations: 5,
+  });
+
   // Getting a previously deployed contract
   const EventPassToken = await ethers.getContract("EventPassToken", deployer);
   await EventPassToken.transferOwnership(
     "0x9dDfb8925D8fBd5BfC41048A41BbDcE1F46a7d10"
   );
+
+  const YourContract = await ethers.getContract("YourContract", deployer);
   /*  await YourContract.setPurpose("Hello");
   
     To take ownership of yourContract using the ownable library uncomment next line and add the 
@@ -79,4 +89,4 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   //   console.error(error);
   // }
 };
-module.exports.tags = ["EventPassToken"];
+module.exports.tags = ["EventPassToken", "YourContract"];

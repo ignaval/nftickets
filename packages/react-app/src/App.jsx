@@ -29,7 +29,7 @@ import externalContracts from "./contracts/external_contracts";
 // contracts
 import deployedContracts from "./contracts/hardhat_contracts.json";
 import { Transactor, Web3ModalSetup } from "./helpers";
-import { Home, ExampleUI, Hints, Subgraph, NFTickets } from "./views";
+import { Home, ExampleUI, Hints, Subgraph, NFTickets, NFTicketsEvent } from "./views";
 import { useStaticJsonRPC } from "./hooks";
 
 const { ethers } = require("ethers");
@@ -278,6 +278,9 @@ function App(props) {
         <Menu.Item key="/nftickets">
           <Link to="/nftickets">NFTickets</Link>
         </Menu.Item>
+        <Menu.Item key="/nfticketsevent">
+          <Link to="/nfticketsevent">NFTicketsEvent</Link>
+        </Menu.Item>
       </Menu>
 
       <Switch>
@@ -335,6 +338,20 @@ function App(props) {
         </Route>
         <Route path="/nftickets">
           <NFTickets
+            address={address}
+            userSigner={userSigner}
+            mainnetProvider={mainnetProvider}
+            localProvider={localProvider}
+            yourLocalBalance={yourLocalBalance}
+            price={price}
+            tx={tx}
+            writeContracts={writeContracts}
+            readContracts={readContracts}
+            purpose={purpose}
+          />
+        </Route>
+        <Route path="/nfticketsevent">
+          <NFTicketsEvent
             address={address}
             userSigner={userSigner}
             mainnetProvider={mainnetProvider}
